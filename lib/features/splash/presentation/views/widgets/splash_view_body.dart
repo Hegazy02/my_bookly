@@ -45,7 +45,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         children: [
           Image.asset(
             AssetsPaths.logo,
-            scale: 2,
+            // scale: 20,
           ),
           SlidingText(
               animationController: animationController,
