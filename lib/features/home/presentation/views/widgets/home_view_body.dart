@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_bookly/core/utils/assets_paths.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/book_card_with_playButton.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -7,9 +8,7 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        CustomAppbar(),
-      ],
+      children: [CustomAppbar(), BookCardWithPlayButton()],
     );
   }
 }
