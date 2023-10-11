@@ -1,51 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:my_bookly/core/utils/assets_paths.dart';
+import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/ListView_bookCard_with_PlayButton.dart.dart';
-import 'package:sizer/sizer.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/bestSeller_list.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/custom_appbar.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
+
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  List<BookModel> booksModels = [];
+  @override
+  void initState() {
+    AssetsPaths.Kbooks.forEach((element) {
+      booksModels.add(BookModel.fromMap(data: element));
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomAppbar(),
-          ListViewBookCardWithPlayButton(),
+          const CustomAppbar(),
+          ListViewBookCardWithPlayButton(booksModels: booksModels),
           const SizedBox(
             height: 20,
           ),
-          Text(
+          const Text(
             "Best Seller",
-          )
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Expanded(child: BestSellerListWidget(booksModels: booksModels))
         ],
       ),
-    );
-  }
-}
-
-class CustomAppbar extends StatelessWidget {
-  const CustomAppbar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Image.asset(
-          AssetsPaths.logo,
-          scale: 5,
-        ),
-        Spacer(),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.search),
-          iconSize: 26.sp,
-        ),
-      ],
     );
   }
 }

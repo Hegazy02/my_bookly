@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:my_bookly/core/utils/assets_paths.dart';
+import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card_with_playButton.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:sizer/sizer.dart';
 
 class ListViewBookCardWithPlayButton extends StatefulWidget {
-  const ListViewBookCardWithPlayButton({super.key});
+  const ListViewBookCardWithPlayButton({super.key, required this.booksModels});
+  final List<BookModel> booksModels;
 
   @override
   State<ListViewBookCardWithPlayButton> createState() =>
@@ -30,13 +33,17 @@ class _ListViewBookCardWithPlayButtonState
       child: ScrollablePositionedList.separated(
         itemPositionsListener: itemPositionsListener,
         scrollDirection: Axis.horizontal,
-        itemCount: AssetsPaths.KbooksCovers.length,
+        itemCount: widget.booksModels.length,
         separatorBuilder: (context, index) => SizedBox(
           width: 20,
         ),
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return BookCardWithPlayButton(index: index, currentItem: currentItem);
+          return BookCardWithPlayButton(
+            index: index,
+            currentItem: currentItem,
+            bookModel: widget.booksModels[index],
+          );
         },
       ),
     );
@@ -60,8 +67,7 @@ class _ListViewBookCardWithPlayButtonState
   void selectItem() {
     setState(() {
       currentItem = indexes.isNotEmpty ? indexes[0] : 0;
-      if (indexes.length > 1 &&
-          indexes[1] == AssetsPaths.KbooksCovers.length - 1) {
+      if (indexes.length > 1 && indexes[1] == widget.booksModels.length - 1) {
         currentItem = indexes[1];
       }
     });

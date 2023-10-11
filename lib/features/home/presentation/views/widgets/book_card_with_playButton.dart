@@ -1,19 +1,27 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
 import 'package:sizer/sizer.dart';
 
 class BookCardWithPlayButton extends StatelessWidget {
   const BookCardWithPlayButton(
-      {super.key, required this.index, required this.currentItem});
+      {super.key,
+      required this.index,
+      required this.currentItem,
+      required this.bookModel});
   final int index;
   final int currentItem;
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        bookCard(index: index, currentItem: currentItem),
+        bookCard(
+          bookModel: bookModel,
+          height: index == currentItem ? 33.h : 30.h,
+        ),
         Positioned(
             right: index == currentItem ? 1.h : 1.h,
             bottom: index == currentItem ? 9.h : 12.h,

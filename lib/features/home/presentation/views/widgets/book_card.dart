@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:my_bookly/core/utils/assets_paths.dart';
-import 'package:sizer/sizer.dart';
+import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
 
 class bookCard extends StatelessWidget {
-  const bookCard({super.key, required this.index, this.currentItem});
-  final int index;
-  final int? currentItem;
+  const bookCard({super.key, required this.bookModel, required this.height});
+  final BookModel bookModel;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: index == currentItem ? 33.h : 30.h,
+      height: height,
       child: AspectRatio(
         aspectRatio: 2.7 / 4,
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
-                  image: AssetImage(AssetsPaths.KbooksCovers[index]),
-                  fit: BoxFit.fill)),
+                  image: AssetImage(bookModel.cover), fit: BoxFit.fill)),
         ),
       ),
     );
