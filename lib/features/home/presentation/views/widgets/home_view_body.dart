@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:my_bookly/core/utils/assets_paths.dart';
-import 'package:my_bookly/features/home/presentation/views/widgets/book_card_with_playButton.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/ListView_bookCard_with_PlayButton.dart.dart';
+import 'package:sizer/sizer.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [CustomAppbar(), BookCardWithPlayButton()],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [CustomAppbar(), ListViewBookCardWithPlayButton()],
+      ),
     );
   }
 }
@@ -20,9 +24,6 @@ class CustomAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const SizedBox(
-          width: 10,
-        ),
         Image.asset(
           AssetsPaths.logo,
           scale: 5,
@@ -31,10 +32,7 @@ class CustomAppbar extends StatelessWidget {
         IconButton(
           onPressed: () {},
           icon: const Icon(Icons.search),
-          iconSize: 36,
-        ),
-        const SizedBox(
-          width: 10,
+          iconSize: 26.sp,
         ),
       ],
     );

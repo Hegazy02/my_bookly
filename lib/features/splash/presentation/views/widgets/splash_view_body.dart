@@ -6,7 +6,7 @@ import 'package:my_bookly/features/home/presentation/views/home_view.dart';
 import 'package:my_bookly/features/splash/presentation/views/widgets/sliding_text.dart';
 
 class SplashViewBody extends StatefulWidget {
-  SplashViewBody({super.key});
+  const SplashViewBody({super.key});
 
   @override
   State<SplashViewBody> createState() => _SplashViewBodyState();
@@ -45,7 +45,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
         children: [
           Image.asset(
             AssetsPaths.logo,
-            // scale: 20,
+            scale: 3,
           ),
           SlidingText(
               animationController: animationController,
@@ -67,7 +67,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void navigateToHome() {
     Future.delayed(
       const Duration(seconds: 2),
-      () => Get.to(HomeView(),
+      () => Get.to(() => HomeView(),
           transition: Transition.downToUp,
           duration: MyConstants.KtrainsitionDuration),
     );
