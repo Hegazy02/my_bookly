@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:my_bookly/core/utils/assets_paths.dart';
 import 'package:sizer/sizer.dart';
 
 class bookCard extends StatelessWidget {
-  const bookCard({super.key, required this.index, required this.currentItem});
+  const bookCard({super.key, required this.index, this.currentItem});
   final int index;
-  final int currentItem;
+  final int? currentItem;
 
   @override
   Widget build(BuildContext context) {

@@ -19,15 +19,14 @@ class _ListViewBookCardWithPlayButtonState
   List indexes = [];
   @override
   void initState() {
-    selectItem();
-
+    changeSelectedItemSize();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40.h,
+      height: 33.h,
       child: ScrollablePositionedList.separated(
         itemPositionsListener: itemPositionsListener,
         scrollDirection: Axis.horizontal,
@@ -41,23 +40,9 @@ class _ListViewBookCardWithPlayButtonState
         },
       ),
     );
-    //  CustomScrollView(
-    //   scrollDirection: Axis.horizontal,
-
-    //   slivers: [
-    //     SliverList.separated(
-    //       separatorBuilder: (context, index) => SizedBox(
-    //         width: 20,
-    //       ),
-    //       itemCount: 5,
-    //       itemBuilder: (context, index) => BookCardWithPlayButton(index: index),
-    //     ),
-
-    //   ],
-    // );
   }
 
-  void selectItem() {
+  void changeSelectedItemSize() {
     itemPositionsListener.itemPositions.addListener(() {
       indexes = itemPositionsListener.itemPositions.value
           .where((element) {
@@ -68,9 +53,17 @@ class _ListViewBookCardWithPlayButtonState
           .map((e) => e.index)
           .toList();
       print(indexes);
-      setState(() {
-        currentItem = indexes.isNotEmpty ? indexes[0] : 0;
-      });
+      selectItem();
+    });
+  }
+
+  void selectItem() {
+    setState(() {
+      currentItem = indexes.isNotEmpty ? indexes[0] : 0;
+      if (indexes.length > 1 &&
+          indexes[1] == AssetsPaths.KbooksCovers.length - 1) {
+        currentItem = indexes[1];
+      }
     });
   }
 }

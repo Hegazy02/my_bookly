@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_bookly/core/utils/assets_paths.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/ListView_bookCard_with_PlayButton.dart.dart';
 import 'package:sizer/sizer.dart';
@@ -11,7 +12,17 @@ class HomeViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-        children: [CustomAppbar(), ListViewBookCardWithPlayButton()],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomAppbar(),
+          ListViewBookCardWithPlayButton(),
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            "Best Seller",
+          )
+        ],
       ),
     );
   }
