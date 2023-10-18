@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_bookly/core/utils/assets_paths.dart';
 import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
-import 'package:my_bookly/features/home/presentation/views/widgets/ListView_bookCard_with_PlayButton.dart.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/ListView_bookCard_with_PlayButton.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/bestSeller_list.dart';
-import 'package:my_bookly/features/home/presentation/views/widgets/custom_appbar.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/custom_home_appbar.dart';
 import 'package:my_bookly/styles.dart';
 
 class HomeViewBody extends StatefulWidget {
@@ -34,7 +34,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomAppbar(),
+              const CustomHomeAppbar(),
               ListViewBookCardWithPlayButton(booksModels: booksModels),
               const SizedBox(
                 height: 20,

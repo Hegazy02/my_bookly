@@ -22,7 +22,7 @@ class BestSellerItem extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(bottom: 10, right: 20),
         child: BookCard(
-          bookModel: booksModels[index],
+          cover: booksModels[index].cover,
           height: 17.h,
         ),
       ),
@@ -60,7 +60,7 @@ class BestSellerItem extends StatelessWidget {
                   width: 5,
                 ),
                 Text.rich(TextSpan(
-                    text: '4.8',
+                    text: '${booksModels[index].rate}',
                     style: Styles.textStyle14
                         .copyWith(fontWeight: FontWeight.bold),
                     children: const <InlineSpan>[

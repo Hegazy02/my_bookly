@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_bookly/core/utils/assets_paths.dart';
-import 'package:sizer/sizer.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomAppbar extends StatelessWidget {
   const CustomAppbar({super.key});
@@ -9,15 +8,18 @@ class CustomAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset(
-          AssetsPaths.logo,
-          scale: 5,
+        IconButton(
+          onPressed: () => GoRouter.of(context).pop(),
+          icon: const Icon(Icons.close),
+          iconSize: 20,
         ),
-        Spacer(),
+        const Spacer(),
         IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.search),
-          iconSize: 26.sp,
+          icon: const Icon(
+            Icons.shopping_cart_outlined,
+          ),
+          iconSize: 20,
         ),
       ],
     );
