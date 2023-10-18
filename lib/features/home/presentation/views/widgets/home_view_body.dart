@@ -27,22 +27,28 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const CustomAppbar(),
-          ListViewBookCardWithPlayButton(booksModels: booksModels),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text(
-            "Best Seller",
-            style: Styles.textStyle18,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Expanded(child: BestSellerListWidget(booksModels: booksModels))
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CustomAppbar(),
+              ListViewBookCardWithPlayButton(booksModels: booksModels),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "Best Seller",
+                style: Styles.textStyle18,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+            ],
+          )),
+          BestSellerListWidget(booksModels: booksModels)
         ],
       ),
     );

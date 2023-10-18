@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
 
-class bookCard extends StatelessWidget {
-  const bookCard({super.key, required this.bookModel, required this.height});
+class BookCard extends StatelessWidget {
+  const BookCard({super.key, required this.bookModel, required this.height});
   final BookModel bookModel;
   final double height;
 

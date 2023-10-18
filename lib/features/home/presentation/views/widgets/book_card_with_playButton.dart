@@ -17,9 +17,9 @@ class BookCardWithPlayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        bookCard(
+        BookCard(
           bookModel: bookModel,
-          height: index == currentItem ? 33.h : 30.h,
+          height: index == currentItem ? 25.h : 22.h,
         ),
         Positioned(
             right: index == currentItem ? 1.h : 1.h,

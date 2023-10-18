@@ -27,7 +27,7 @@ class _ListViewBookCardWithPlayButtonState
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 33.h,
+      height: 25.h,
       child: ScrollablePositionedList.separated(
         itemPositionsListener: itemPositionsListener,
         scrollDirection: Axis.horizontal,
