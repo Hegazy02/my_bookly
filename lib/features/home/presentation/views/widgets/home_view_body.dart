@@ -4,6 +4,7 @@ import 'package:my_bookly/features/home/presentation/view_model/book_model.dart'
 import 'package:my_bookly/features/home/presentation/views/widgets/ListView_bookCard_with_PlayButton.dart.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/bestSeller_list.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/custom_appbar.dart';
+import 'package:my_bookly/styles.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -36,6 +37,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           ),
           const Text(
             "Best Seller",
+            style: Styles.textStyle18,
           ),
           const SizedBox(
             height: 20,

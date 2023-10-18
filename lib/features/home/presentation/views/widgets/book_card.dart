@@ -11,10 +11,10 @@ class bookCard extends StatelessWidget {
     return SizedBox(
       height: height,
       child: AspectRatio(
-        aspectRatio: 2.7 / 4,
+        aspectRatio: 2.6 / 4,
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
                   image: AssetImage(bookModel.cover), fit: BoxFit.fill)),
         ),

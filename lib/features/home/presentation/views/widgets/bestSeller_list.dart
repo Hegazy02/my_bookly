@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_bookly/core/utils/assets_paths.dart';
 import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
+import 'package:my_bookly/styles.dart';
 import 'package:sizer/sizer.dart';
 
 class BestSellerListWidget extends StatelessWidget {
@@ -11,7 +12,7 @@ class BestSellerListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       slivers: [
         SliverList.builder(
           itemCount: AssetsPaths.Kbooks.length,
@@ -27,9 +28,12 @@ class BestSellerListWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("${booksModels[index].title}",
-                      overflow: TextOverflow.clip),
-                  Text("${booksModels[index].authorName}",
+                  Text(
+                    booksModels[index].title,
+                    overflow: TextOverflow.clip,
+                    style: Styles.textStyle20,
+                  ),
+                  Text(booksModels[index].authorName,
                       overflow: TextOverflow.ellipsis),
                   Text("${booksModels[index].price}",
                       overflow: TextOverflow.ellipsis),
