@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_bookly/core/utils/assets_paths.dart';
 import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
-import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card_with_playButton.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:sizer/sizer.dart';
@@ -34,10 +32,10 @@ class _ListViewBookCardWithPlayButtonState
         itemPositionsListener: itemPositionsListener,
         scrollDirection: Axis.horizontal,
         itemCount: widget.booksModels.length,
-        separatorBuilder: (context, index) => SizedBox(
+        separatorBuilder: (context, index) => const SizedBox(
           width: 20,
         ),
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return BookCardWithPlayButton(
             index: index,

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
@@ -24,18 +23,18 @@ class BookCardWithPlayButton extends StatelessWidget {
         ),
         Positioned(
             right: index == currentItem ? 1.h : 1.h,
-            bottom: index == currentItem ? 9.h : 12.h,
+            bottom: index == currentItem ? 2.h : 5.h,
             child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(25)),
+              borderRadius: const BorderRadius.all(Radius.circular(25)),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                 child: Container(
-                  padding: EdgeInsets.all(7),
+                  padding: const EdgeInsets.all(7),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.grey.withOpacity(0.2),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.play_arrow,
                     size: 28,
                   ),
