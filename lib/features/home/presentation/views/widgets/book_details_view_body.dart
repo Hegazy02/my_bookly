@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_bookly/core/utils/assets_paths.dart';
+import 'package:my_bookly/core/widgets/custom_button.dart';
 import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/book_actions.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_details_rating_row.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/custom_appbar.dart';
-import 'package:my_bookly/features/home/presentation/views/widgets/price_and_preview_book.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/you_might_also_like_list.dart';
 import 'package:my_bookly/styles.dart';
 import 'package:sizer/sizer.dart';
@@ -48,9 +48,10 @@ class BookDetailsViewBody extends StatelessWidget {
                   height: 15,
                 ),
                 BookDetailsRatingRowWidget(rate: bookModel.rate),
-                PriceAndPreviewBook(
-                  price: bookModel.price,
+                const SizedBox(
+                  height: 37,
                 ),
+                BookActions(price: bookModel.price),
                 const SizedBox(
                   height: 30,
                 ),

@@ -2,7 +2,7 @@ class BookModel {
   final String cover;
   final String title;
   final String authorName;
-  final int price;
+  final double price;
   final double rate;
   final int ratedTimes;
   final String description;

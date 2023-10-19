@@ -10,14 +10,14 @@ class YouMightAlsoLikeList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 13.h,
+        height: 15.h,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           itemCount: AssetsPaths.Kbooks.length,
           itemBuilder: (context, index) =>
-              BookCard(cover: AssetsPaths.Kbooks[index]["cover"], height: 13.h),
+              BookCard(cover: AssetsPaths.Kbooks[index]["cover"], height: 15.h),
           separatorBuilder: (context, index) => const SizedBox(
             width: 10,
           ),
