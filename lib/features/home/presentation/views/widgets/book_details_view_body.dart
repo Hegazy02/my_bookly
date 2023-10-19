@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_bookly/core/widgets/custom_button.dart';
 import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_actions.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
@@ -29,7 +28,7 @@ class BookDetailsViewBody extends StatelessWidget {
                 const CustomAppbar(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30),
-                  child: BookCard(cover: bookModel.cover, height: 30.h),
+                  child: BookCard(bookModel: bookModel, height: 30.h),
                 ),
                 Text(
                   bookModel.title,

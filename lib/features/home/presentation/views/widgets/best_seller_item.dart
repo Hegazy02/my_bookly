@@ -22,7 +22,7 @@ class BestSellerItem extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(bottom: 10, right: 20),
         child: BookCard(
-          cover: booksModels[index].cover,
+          bookModel: booksModels[index],
           height: 17.h,
         ),
       ),

@@ -48,7 +48,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               ),
             ],
           )),
-          BestSellerListWidget(booksModels: booksModels)
+          BestSellerListWidget(
+            booksModels: booksModels,
+            itemCount: AssetsPaths.Kbooks.length,
+          )
         ],
       ),
     );

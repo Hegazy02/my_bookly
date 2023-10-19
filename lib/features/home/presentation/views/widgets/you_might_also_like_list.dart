@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_bookly/core/utils/assets_paths.dart';
+import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
 import 'package:sizer/sizer.dart';
 
@@ -16,8 +17,9 @@ class YouMightAlsoLikeList extends StatelessWidget {
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           itemCount: AssetsPaths.Kbooks.length,
-          itemBuilder: (context, index) =>
-              BookCard(cover: AssetsPaths.Kbooks[index]["cover"], height: 15.h),
+          itemBuilder: (context, index) => BookCard(
+              bookModel: BookModel.fromMap(data: AssetsPaths.Kbooks[index]),
+              height: 15.h),
           separatorBuilder: (context, index) => const SizedBox(
             width: 10,
           ),
