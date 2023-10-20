@@ -10,7 +10,10 @@ class SearchTextField extends StatelessWidget {
       onChanged: onChanged,
       decoration: InputDecoration(
         hintText: "Search",
-        suffixIcon: const Icon(Icons.search),
+        suffixIcon: const Icon(
+          Icons.search,
+          color: Colors.white,
+        ),
         contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
         border: buildOutLineInputBorder(),
         enabledBorder: buildOutLineInputBorder(),
