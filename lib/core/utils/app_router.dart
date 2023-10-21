@@ -1,8 +1,7 @@
 // ignore_for_file: constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
+import 'package:my_bookly/features/home/data/models/new_book_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/book_details_view.dart';
 import 'package:my_bookly/features/home/presentation/views/home_view.dart';
 import 'package:my_bookly/features/search/presentation/view/search_view.dart';

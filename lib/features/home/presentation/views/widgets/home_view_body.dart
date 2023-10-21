@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_bookly/core/utils/assets_paths.dart';
-import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
+import 'package:my_bookly/features/home/data/models/new_book_model/book_model.dart';
+import 'package:my_bookly/features/home/presentation/view_model/newest_books_cubit/newest_books_cubit.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/ListView_bookCard_with_PlayButton.dart';
-import 'package:my_bookly/features/home/presentation/views/widgets/bestSeller_list.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/new_books_list.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/custom_home_appbar.dart';
 import 'package:my_bookly/styles.dart';
 
@@ -17,9 +19,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   List<BookModel> booksModels = [];
   @override
   void initState() {
-    AssetsPaths.Kbooks.forEach((element) {
-      booksModels.add(BookModel.fromMap(data: element));
-    });
+    for (var element in AssetsPaths.Kbooks) {
+      booksModels.add(BookModel.fromJson(element));
+    }
     super.initState();
   }
 
@@ -30,27 +32,42 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomHomeAppbar(),
-              ListViewBookCardWithPlayButton(booksModels: booksModels),
-              const SizedBox(
+              CustomHomeAppbar(),
+              ListViewBookCardWithPlayButton(),
+              SizedBox(
                 height: 20,
               ),
-              const Text(
-                "Best Seller",
+              Text(
+                "New Books",
                 style: Styles.textStyle18,
               ),
-              const SizedBox(
+              SizedBox(
                 height: 20,
               ),
             ],
           )),
-          BestSellerListWidget(
-            booksModels: booksModels,
-            itemCount: AssetsPaths.Kbooks.length,
+          BlocBuilder<NewestBooksCubit, NewestBooksState>(
+            builder: (context, state) {
+              if (state is NewestBooksSuccess) {
+                return NewBooksListWidget(
+                  booksModels: state.books,
+                );
+              } else if (state is NewestBooksFailure) {
+                return SliverToBoxAdapter(
+                  child: Text("Error : ${state.errMessage}"),
+                );
+              } else {
+                return const SliverToBoxAdapter(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+            },
           )
         ],
       ),

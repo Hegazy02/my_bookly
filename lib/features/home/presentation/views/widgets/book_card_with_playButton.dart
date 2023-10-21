@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
+import 'package:my_bookly/features/home/data/models/new_book_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
 import 'package:sizer/sizer.dart';
 
@@ -20,6 +20,7 @@ class BookCardWithPlayButton extends StatelessWidget {
         BookCard(
           bookModel: bookModel,
           height: index == currentItem ? 25.h : 22.h,
+          isTap: true,
         ),
         Positioned(
             right: index == currentItem ? 1.h : 1.h,

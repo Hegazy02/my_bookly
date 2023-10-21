@@ -21,7 +21,7 @@ class ServerFailure extends Failure {
       case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
           statusCode: dioException.response!.statusCode!,
-          response: dioException.response,
+          data: dioException.response!.data as Map,
         );
       case DioExceptionType.cancel:
         return ServerFailure(
@@ -38,9 +38,9 @@ class ServerFailure extends Failure {
     }
   }
   factory ServerFailure.fromResponse(
-      {required int statusCode, required dynamic response}) {
+      {required int statusCode, required Map data}) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(errMessage: response['error']['message']);
+      return ServerFailure(errMessage: data['error']['message']);
     } else if (statusCode == 404) {
       return ServerFailure(
           errMessage: "Your request not found, Please try later");

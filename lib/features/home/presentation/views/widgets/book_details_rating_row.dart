@@ -8,7 +8,7 @@ class BookDetailsRatingRowWidget extends StatelessWidget {
     required this.rate,
   });
 
-  final double rate;
+  final int rate;
 
   @override
   Widget build(BuildContext context) {

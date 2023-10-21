@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_bookly/core/utils/service_locator.dart';
+import 'package:my_bookly/features/home/data/models/new_book_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_actions.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_details_rating_row.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/custom_appbar.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/you_might_also_like_list.dart';
+import 'package:my_bookly/features/search/data/repos/search_repo.dart';
+import 'package:my_bookly/features/search/presentation/view_model/search/search_cubit.dart';
 import 'package:my_bookly/styles.dart';
 import 'package:sizer/sizer.dart';
 
@@ -28,10 +32,11 @@ class BookDetailsViewBody extends StatelessWidget {
                 const CustomAppbar(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30),
-                  child: BookCard(bookModel: bookModel, height: 30.h),
+                  child: BookCard(
+                      bookModel: bookModel, height: 30.h, isTap: false),
                 ),
                 Text(
-                  bookModel.title,
+                  bookModel.volumeInfo?.title! ?? '',
                   style: Styles.textStyle30,
                   textAlign: TextAlign.center,
                 ),
@@ -39,18 +44,20 @@ class BookDetailsViewBody extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  bookModel.authorName,
+                  bookModel.volumeInfo?.authors![0] ?? '',
                   style: Styles.textStyle18.copyWith(color: Colors.grey),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
                   height: 15,
                 ),
-                BookDetailsRatingRowWidget(rate: bookModel.rate),
+                BookDetailsRatingRowWidget(
+                    rate: bookModel.volumeInfo?.averageRating ?? 0),
                 const SizedBox(
                   height: 37,
                 ),
-                BookActions(price: bookModel.price),
+                BookActions(
+                    price: bookModel.saleInfo?.retailPrice?.amount ?? 0),
                 const SizedBox(
                   height: 30,
                 ),
@@ -68,7 +75,12 @@ class BookDetailsViewBody extends StatelessWidget {
               ],
             ),
           ),
-          const YouMightAlsoLikeList()
+          BlocProvider(
+            create: (context) => SearchCubit(ServiceLocator.getIt<Search>()),
+            child: YouMightAlsoLikeList(
+              title: bookModel.volumeInfo?.title ?? 'programming',
+            ),
+          )
         ],
       ),
     );

@@ -1,6 +1,5 @@
 part of 'newest_books_cubit.dart';
 
-@immutable
 class NewestBooksState {
   const NewestBooksState();
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_bookly/constants.dart';
-import 'package:my_bookly/features/home/presentation/view_model/book_model.dart';
+import 'package:my_bookly/features/home/data/models/new_book_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
 import 'package:my_bookly/styles.dart';
 import 'package:sizer/sizer.dart';
 
-class BestSellerItem extends StatelessWidget {
-  const BestSellerItem({
+class NewBooksItem extends StatelessWidget {
+  const NewBooksItem({
     super.key,
     required this.booksModels,
     required this.index,
@@ -24,6 +24,7 @@ class BestSellerItem extends StatelessWidget {
         child: BookCard(
           bookModel: booksModels[index],
           height: 17.h,
+          isTap: true,
         ),
       ),
       Expanded(
@@ -31,14 +32,14 @@ class BestSellerItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              booksModels[index].title,
+              booksModels[index].volumeInfo?.title ?? 'Missing',
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               style: Styles.textStyle20
                   .copyWith(fontFamily: MyConstants.KgtSectraFine),
             ),
             Text(
-              booksModels[index].authorName,
+              booksModels[index].volumeInfo!.authors?[0] ?? "Missing",
               overflow: TextOverflow.ellipsis,
               style: Styles.textStyle14Grey
                   .copyWith(color: Colors.grey, fontSize: 12),
@@ -46,7 +47,7 @@ class BestSellerItem extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "${booksModels[index].price}\$",
+                  "${booksModels[index].saleInfo?.retailPrice?.amount}\$",
                   style:
                       Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -60,11 +61,15 @@ class BestSellerItem extends StatelessWidget {
                   width: 5,
                 ),
                 Text.rich(TextSpan(
-                    text: '${booksModels[index].rate}',
+                    text:
+                        '${booksModels[index].volumeInfo?.averageRating ?? 0}',
                     style: Styles.textStyle14
                         .copyWith(fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(text: ' (2800)', style: Styles.textStyle14Grey)
+                    children: <InlineSpan>[
+                      TextSpan(
+                          text:
+                              ' (${booksModels[index].volumeInfo?.ratingsCount ?? 0})',
+                          style: Styles.textStyle14Grey)
                     ])),
               ],
             ),

@@ -5,7 +5,7 @@ import 'reading_modes.dart';
 
 class VolumeInfo {
   String? title;
-  List<String>? authors;
+  List? authors;
   String? publisher;
   String? publishedDate;
   String? description;
@@ -13,7 +13,7 @@ class VolumeInfo {
   ReadingModes? readingModes;
   int? pageCount;
   String? printType;
-  List<String>? categories;
+  List? categories;
   String? maturityRating;
   bool? allowAnonLogging;
   String? contentVersion;
@@ -23,6 +23,8 @@ class VolumeInfo {
   String? previewLink;
   String? infoLink;
   String? canonicalVolumeLink;
+  var averageRating;
+  var ratingsCount;
 
   VolumeInfo({
     this.title,
@@ -44,11 +46,13 @@ class VolumeInfo {
     this.previewLink,
     this.infoLink,
     this.canonicalVolumeLink,
+    this.averageRating,
+    this.ratingsCount,
   });
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
         title: json['title'] as String?,
-        authors: json['authors'] as List<String>?,
+        authors: json['authors'] as List?,
         publisher: json['publisher'] as String?,
         publishedDate: json['publishedDate'] as String?,
         description: json['description'] as String?,
@@ -61,7 +65,7 @@ class VolumeInfo {
                 json['readingModes'] as Map<String, dynamic>),
         pageCount: json['pageCount'] as int?,
         printType: json['printType'] as String?,
-        categories: json['categories'] as List<String>?,
+        categories: json['categories'] as List?,
         maturityRating: json['maturityRating'] as String?,
         allowAnonLogging: json['allowAnonLogging'] as bool?,
         contentVersion: json['contentVersion'] as String?,
@@ -70,12 +74,16 @@ class VolumeInfo {
             : PanelizationSummary.fromJson(
                 json['panelizationSummary'] as Map<String, dynamic>),
         imageLinks: json['imageLinks'] == null
-            ? null
+            ? ImageLinks(
+                thumbnail:
+                    'https://img.freepik.com/free-vector/white-abstract-background-design_23-2148825582.jpg')
             : ImageLinks.fromJson(json['imageLinks'] as Map<String, dynamic>),
         language: json['language'] as String?,
         previewLink: json['previewLink'] as String?,
         infoLink: json['infoLink'] as String?,
         canonicalVolumeLink: json['canonicalVolumeLink'] as String?,
+        ratingsCount: json['ratingsCount'] as int?,
+        averageRating: json['averageRating'],
       );
 
   Map<String, dynamic> toJson() => {
