@@ -5,10 +5,12 @@ import 'package:my_bookly/styles.dart';
 class BookDetailsRatingRowWidget extends StatelessWidget {
   const BookDetailsRatingRowWidget({
     super.key,
-    required this.rate,
+    required this.averageRating,
+    required this.ratingsCount,
   });
 
-  final int rate;
+  final int averageRating;
+  final int ratingsCount;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +27,11 @@ class BookDetailsRatingRowWidget extends StatelessWidget {
         ),
         Text.rich(
           TextSpan(
-              text: "$rate",
+              text: "$averageRating",
               style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
-              children: const <InlineSpan>[
-                TextSpan(text: ' (2800)', style: Styles.textStyle14Grey)
+              children: <InlineSpan>[
+                TextSpan(
+                    text: ' ($ratingsCount)', style: Styles.textStyle14Grey)
               ]),
         )
       ],

@@ -11,15 +11,15 @@ class CustomAppbar extends StatelessWidget {
         IconButton(
           onPressed: () => GoRouter.of(context).pop(),
           icon: const Icon(Icons.close),
-          iconSize: 20,
+          iconSize: 26,
         ),
         const Spacer(),
         IconButton(
           onPressed: () {},
           icon: const Icon(
-            Icons.shopping_cart_outlined,
+            Icons.download_outlined,
           ),
-          iconSize: 20,
+          iconSize: 26,
         ),
       ],
     );

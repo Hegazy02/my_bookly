@@ -74,9 +74,7 @@ class VolumeInfo {
             : PanelizationSummary.fromJson(
                 json['panelizationSummary'] as Map<String, dynamic>),
         imageLinks: json['imageLinks'] == null
-            ? ImageLinks(
-                thumbnail:
-                    'https://img.freepik.com/free-vector/white-abstract-background-design_23-2148825582.jpg')
+            ? null
             : ImageLinks.fromJson(json['imageLinks'] as Map<String, dynamic>),
         language: json['language'] as String?,
         previewLink: json['previewLink'] as String?,

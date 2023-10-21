@@ -16,4 +16,10 @@ class SearchCubit extends Cubit<SearchState> {
     searchedBooks.fold((failure) => emit(SearchFailure(failure.errMessage)),
         (books) => emit(SearchSuccess(searchedBooks: books)));
   }
+
+  @override
+  void onChange(Change<SearchState> change) {
+    print(change);
+    super.onChange(change);
+  }
 }

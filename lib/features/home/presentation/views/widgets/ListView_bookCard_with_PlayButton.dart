@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_bookly/features/home/data/models/new_book_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/view_model/featured_book_cubit/book_featured_cubit.dart';
 import 'package:my_bookly/features/home/presentation/view_model/featured_book_cubit/book_featured_state.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card_with_playButton.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/shimmer_listView_BookCard_With_PlayButton.dart';
 import 'package:my_bookly/styles.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:sizer/sizer.dart';
@@ -52,14 +52,14 @@ class _ListViewBookCardWithPlayButtonState
             ),
           );
         } else if (state is FeaturedBookFailure) {
-          return Text(
-            state.errMessage,
-            style: Styles.textStyle18,
+          return Center(
+            child: Text(
+              state.errMessage,
+              style: Styles.textStyle18,
+            ),
           );
         } else {
-          return SizedBox(
-              height: 25.h,
-              child: const Center(child: CircularProgressIndicator()));
+          return ShimmerListViewBookCardWithPlayButton();
         }
       },
     );

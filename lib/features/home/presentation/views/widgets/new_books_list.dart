@@ -11,7 +11,7 @@ class NewBooksListWidget extends StatelessWidget {
     return SliverList.builder(
       itemCount: booksModels.length,
       itemBuilder: (context, index) =>
-          NewBooksItem(booksModels: booksModels, index: index),
+          NewBooksItem(bookModel: booksModels[index]),
     );
   }
 }

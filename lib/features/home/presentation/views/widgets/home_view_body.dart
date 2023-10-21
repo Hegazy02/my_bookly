@@ -1,29 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_bookly/core/utils/assets_paths.dart';
-import 'package:my_bookly/features/home/data/models/new_book_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/view_model/newest_books_cubit/newest_books_cubit.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/ListView_bookCard_with_PlayButton.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/new_books_list.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/custom_home_appbar.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/shimmer_new_books_list.dart';
 import 'package:my_bookly/styles.dart';
 
-class HomeViewBody extends StatefulWidget {
+class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
-
-  @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
-}
-
-class _HomeViewBodyState extends State<HomeViewBody> {
-  List<BookModel> booksModels = [];
-  @override
-  void initState() {
-    for (var element in AssetsPaths.Kbooks) {
-      booksModels.add(BookModel.fromJson(element));
-    }
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +43,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 );
               } else if (state is NewestBooksFailure) {
                 return SliverToBoxAdapter(
-                  child: Text("Error : ${state.errMessage}"),
+                  child: Center(child: Text("Error : ${state.errMessage}")),
                 );
               } else {
-                return const SliverToBoxAdapter(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return SliverFillRemaining(child: ShimmerNewBooksListWidget());
               }
             },
           )

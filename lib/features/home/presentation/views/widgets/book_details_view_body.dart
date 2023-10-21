@@ -21,7 +21,7 @@ class BookDetailsViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: CustomScrollView(
-        physics: const ScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: Column(
@@ -36,7 +36,7 @@ class BookDetailsViewBody extends StatelessWidget {
                       bookModel: bookModel, height: 30.h, isTap: false),
                 ),
                 Text(
-                  bookModel.volumeInfo?.title! ?? '',
+                  bookModel.volumeInfo?.title! ?? 'Missing',
                   style: Styles.textStyle30,
                   textAlign: TextAlign.center,
                 ),
@@ -44,7 +44,7 @@ class BookDetailsViewBody extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  bookModel.volumeInfo?.authors![0] ?? '',
+                  bookModel.volumeInfo?.authors?[0] ?? 'Missing',
                   style: Styles.textStyle18.copyWith(color: Colors.grey),
                   textAlign: TextAlign.center,
                 ),
@@ -52,7 +52,9 @@ class BookDetailsViewBody extends StatelessWidget {
                   height: 15,
                 ),
                 BookDetailsRatingRowWidget(
-                    rate: bookModel.volumeInfo?.averageRating ?? 0),
+                  ratingsCount: bookModel.volumeInfo?.ratingsCount ?? 0,
+                  averageRating: bookModel.volumeInfo?.averageRating ?? 0,
+                ),
                 const SizedBox(
                   height: 37,
                 ),

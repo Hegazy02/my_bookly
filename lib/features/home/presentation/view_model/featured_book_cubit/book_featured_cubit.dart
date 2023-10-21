@@ -18,4 +18,10 @@ class FeaturedBookCubit extends Cubit<FeaturedBookState> {
             ),
         (books) => emit(FeaturedBookSuccess(books)));
   }
+
+  @override
+  void onChange(Change<FeaturedBookState> change) {
+    print(change);
+    super.onChange(change);
+  }
 }
