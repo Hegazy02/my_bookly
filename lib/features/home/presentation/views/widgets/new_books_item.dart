@@ -9,19 +9,20 @@ import 'package:sizer/sizer.dart';
 import 'package:go_router/go_router.dart';
 
 class NewBooksItem extends StatelessWidget {
-  const NewBooksItem({
-    super.key,
-    required this.bookModel,
-  });
+  const NewBooksItem(
+      {super.key, required this.bookModel, required this.isOnTap});
 
   final BookModel bookModel;
+  final bool isOnTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context)
-            .push(AppRouter.KBookDetailesView, extra: bookModel);
+        if (isOnTap) {
+          GoRouter.of(context)
+              .push(AppRouter.KBookDetailesView, extra: bookModel);
+        }
       },
       child: Row(children: [
         Padding(

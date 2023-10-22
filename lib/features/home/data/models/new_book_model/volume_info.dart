@@ -11,7 +11,7 @@ class VolumeInfo {
   String? description;
   List<IndustryIdentifier>? industryIdentifiers;
   ReadingModes? readingModes;
-  int? pageCount;
+  var pageCount;
   String? printType;
   List? categories;
   String? maturityRating;
@@ -63,7 +63,7 @@ class VolumeInfo {
             ? null
             : ReadingModes.fromJson(
                 json['readingModes'] as Map<String, dynamic>),
-        pageCount: json['pageCount'] as int?,
+        pageCount: json['pageCount'],
         printType: json['printType'] as String?,
         categories: json['categories'] as List?,
         maturityRating: json['maturityRating'] as String?,
@@ -80,7 +80,7 @@ class VolumeInfo {
         previewLink: json['previewLink'] as String?,
         infoLink: json['infoLink'] as String?,
         canonicalVolumeLink: json['canonicalVolumeLink'] as String?,
-        ratingsCount: json['ratingsCount'] as int?,
+        ratingsCount: json['ratingsCount'],
         averageRating: json['averageRating'],
       );
 

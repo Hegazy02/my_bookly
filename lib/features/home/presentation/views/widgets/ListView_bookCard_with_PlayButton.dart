@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_bookly/features/home/presentation/view_model/featured_book_cubit/book_featured_cubit.dart';
 import 'package:my_bookly/features/home/presentation/view_model/featured_book_cubit/book_featured_state.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card_with_playButton.dart';
-import 'package:my_bookly/features/home/presentation/views/widgets/shimmer_listView_BookCard_With_PlayButton.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/shimmers/shimmer_listView_BookCard_With_PlayButton.dart';
 import 'package:my_bookly/styles.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:sizer/sizer.dart';

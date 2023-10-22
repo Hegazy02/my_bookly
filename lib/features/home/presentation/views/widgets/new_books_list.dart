@@ -4,14 +4,22 @@ import 'package:my_bookly/features/home/presentation/views/widgets/new_books_ite
 
 class NewBooksListWidget extends StatelessWidget {
   final List<BookModel> booksModels;
-  const NewBooksListWidget({super.key, required this.booksModels});
+  int test = 0;
+  NewBooksListWidget({super.key, required this.booksModels});
 
   @override
   Widget build(BuildContext context) {
     return SliverList.builder(
-      itemCount: booksModels.length,
-      itemBuilder: (context, index) =>
-          NewBooksItem(bookModel: booksModels[index]),
-    );
+        itemCount: booksModels.length + 1,
+        itemBuilder: (context, index) {
+          test = booksModels.length;
+          if (index >= test) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return NewBooksItem(bookModel: booksModels[index], isOnTap: true);
+          }
+        });
   }
 }

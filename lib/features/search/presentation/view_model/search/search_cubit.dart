@@ -7,14 +7,46 @@ import 'package:my_bookly/features/search/data/repos/search_repo.dart';
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
-  SearchCubit(this.search) : super(SearchInitial());
+  SearchCubit(this.search) : super(SearchInitial()) {
+    controller.addListener(() async {
+      await getMoreBooks();
+    });
+  }
+  ScrollController controller = ScrollController();
+  bool isLoadingMore = false;
+  int startIndex = 0;
+  String searchedValue = 'data';
+  List<BookModel> allSearchedBooks = [];
+
   final Search search;
-  searchedBooks({required String searchedValue}) async {
+  searchedBooks(
+      {required String searchedValue, required bool isNewList}) async {
+    this.searchedValue = searchedValue;
+    if (isNewList) {
+      allSearchedBooks = [];
+      startIndex = 0;
+    }
     Either<Failure, List<BookModel>> searchedBooks = await search.searchedBooks(
-      searchedValue: searchedValue,
-    );
+        searchedValue: searchedValue, startIndex: startIndex);
     searchedBooks.fold((failure) => emit(SearchFailure(failure.errMessage)),
-        (books) => emit(SearchSuccess(searchedBooks: books)));
+        (books) {
+      allSearchedBooks.addAll(books);
+      print("zzzzzzzzzzz");
+      print("allSearchedBooks ${allSearchedBooks.length}");
+      emit(SearchSuccess(searchedBooks: allSearchedBooks));
+    });
+  }
+
+  getMoreBooks() async {
+    if (controller.position.pixels == controller.position.maxScrollExtent) {
+      isLoadingMore = true;
+
+      startIndex += 10;
+      await searchedBooks(searchedValue: searchedValue, isNewList: false);
+      print("xxxxxxxxxxxxxxxx");
+      print("allSearchedBooks ${allSearchedBooks.length}");
+      // isLoadingMore = false;
+    }
   }
 
   @override

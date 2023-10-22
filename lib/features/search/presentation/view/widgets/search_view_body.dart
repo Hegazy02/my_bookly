@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_bookly/core/utils/assets_paths.dart';
-import 'package:my_bookly/core/utils/service_locator.dart';
-import 'package:my_bookly/features/home/data/models/new_book_model/book_model.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/new_books_list.dart';
-import 'package:my_bookly/features/home/presentation/views/widgets/new_books_item.dart';
-import 'package:my_bookly/features/search/data/repos/search_repo.dart';
 import 'package:my_bookly/features/search/presentation/view/widgets/search_text_field.dart';
 import 'package:my_bookly/features/search/presentation/view_model/search/search_cubit.dart';
 import 'package:my_bookly/styles.dart';
@@ -31,7 +26,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
           SearchTextField(
             onChanged: (value) {
               BlocProvider.of<SearchCubit>(context)
-                  .searchedBooks(searchedValue: value);
+                  .searchedBooks(searchedValue: value, isNewList: true);
             },
           ),
           BlocBuilder<SearchCubit, SearchState>(
@@ -55,6 +50,8 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                       ),
                       Expanded(
                         child: CustomScrollView(
+                          controller:
+                              BlocProvider.of<SearchCubit>(context).controller,
                           physics: const BouncingScrollPhysics(),
                           slivers: [
                             NewBooksListWidget(
@@ -70,7 +67,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                 return Center(
                   child: Text(
                     state.errMessage,
-                    style: Styles.textStyle18,
+                    style: Styles.textStyle14,
                   ),
                 );
               } else if (state is SearchLoading) {

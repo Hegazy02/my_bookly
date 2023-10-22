@@ -4,7 +4,8 @@ import 'package:my_bookly/features/home/presentation/view_model/newest_books_cub
 import 'package:my_bookly/features/home/presentation/views/widgets/ListView_bookCard_with_PlayButton.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/new_books_list.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/custom_home_appbar.dart';
-import 'package:my_bookly/features/home/presentation/views/widgets/shimmer_new_books_list.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/shimmers/shimmer_new_books_list.dart';
+
 import 'package:my_bookly/styles.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -46,7 +47,8 @@ class HomeViewBody extends StatelessWidget {
                   child: Center(child: Text("Error : ${state.errMessage}")),
                 );
               } else {
-                return SliverFillRemaining(child: ShimmerNewBooksListWidget());
+                return const SliverFillRemaining(
+                    child: ShimmerNewBooksListWidget());
               }
             },
           )

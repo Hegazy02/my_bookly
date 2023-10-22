@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
+import 'package:my_bookly/features/home/presentation/views/widgets/shimmers/shimmer_you_may_also_like_list.dart';
 import 'package:my_bookly/features/search/presentation/view_model/search/search_cubit.dart';
 import 'package:my_bookly/styles.dart';
 import 'package:sizer/sizer.dart';
@@ -21,9 +22,8 @@ class _YouMightAlsoLikeListState extends State<YouMightAlsoLikeList> {
   }
 
   searchForSimilarBooks() async {
-    await BlocProvider.of<SearchCubit>(context).searchedBooks(
-      searchedValue: widget.title,
-    );
+    await BlocProvider.of<SearchCubit>(context)
+        .searchedBooks(searchedValue: widget.title, isNewList: true);
   }
 
   @override
@@ -54,14 +54,11 @@ class _YouMightAlsoLikeListState extends State<YouMightAlsoLikeList> {
           return SliverToBoxAdapter(
             child: Text(
               "Error : ${state.errMessage}",
-              style: Styles.textStyle18,
+              style: Styles.textStyle14,
             ),
           );
         } else {
-          return SliverToBoxAdapter(
-              child: SizedBox(
-                  height: 15.h,
-                  child: const Center(child: CircularProgressIndicator())));
+          return const ShimmerYouMayAlsoLikeList();
         }
       },
     );

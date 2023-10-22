@@ -4,5 +4,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class Search {
   Future<Either<Failure, List<BookModel>>> searchedBooks(
-      {required String searchedValue});
+      {required String searchedValue, required int startIndex});
 }

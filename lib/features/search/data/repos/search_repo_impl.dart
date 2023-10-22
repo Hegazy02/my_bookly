@@ -12,11 +12,13 @@ class SearchImpl extends Search {
 
   @override
   Future<Either<Failure, List<BookModel>>> searchedBooks(
-      {required String searchedValue}) async {
+      {required String searchedValue, required int startIndex}) async {
     final Map data;
     List<BookModel> searchedBooks = [];
     try {
-      data = await apiService.get(endPoint: 'volumes?q=$searchedValue');
+      data = await apiService.get(
+          endPoint:
+              'volumes?q=$searchedValue&startIndex=$startIndex&maxResults=10');
       for (var element in data['items']) {
         searchedBooks.add(BookModel.fromJson(element));
       }

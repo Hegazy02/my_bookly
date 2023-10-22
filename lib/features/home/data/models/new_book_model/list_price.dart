@@ -1,5 +1,5 @@
 class ListPrice {
-  double? amount;
+  var amount;
   String? currencyCode;
 
   ListPrice({this.amount, this.currencyCode});

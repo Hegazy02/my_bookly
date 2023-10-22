@@ -13,7 +13,9 @@ class ShimmerNewBooksListWidget extends StatelessWidget {
         highlightColor: Colors.grey[600]!,
         child: ListView.builder(
             itemCount: 10,
-            itemBuilder: (context, index) =>
-                NewBooksItem(bookModel: BookModel())));
+            itemBuilder: (context, index) => NewBooksItem(
+                  bookModel: BookModel(),
+                  isOnTap: false,
+                )));
   }
 }

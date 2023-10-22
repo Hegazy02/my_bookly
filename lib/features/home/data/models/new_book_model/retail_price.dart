@@ -1,11 +1,11 @@
 class RetailPrice {
-  double? amount;
+  var amount;
   String? currencyCode;
 
   RetailPrice({this.amount, this.currencyCode});
 
   factory RetailPrice.fromJson(Map<String, dynamic> json) => RetailPrice(
-        amount: json['amount'] as double?,
+        amount: json['amount'],
         currencyCode: json['currencyCode'] as String?,
       );
 
