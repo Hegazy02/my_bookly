@@ -29,7 +29,10 @@ class BookDetailsViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const CustomAppbar(),
+                CustomAppbar(
+                  bookTitle: bookModel.volumeInfo?.title ?? 'Error',
+                  bookUrl: bookModel.accessInfo?.pdf?.acsTokenLink,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30),
                   child: BookCard(

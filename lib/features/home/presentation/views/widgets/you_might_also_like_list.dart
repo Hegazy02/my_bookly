@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_bookly/features/home/presentation/views/widgets/book_card.dart';
-import 'package:my_bookly/features/home/presentation/views/widgets/shimmers/shimmer_you_may_also_like_list.dart';
+import 'package:my_bookly/features/search/presentation/view/widgets/shimmer_you_may_also_like_list.dart';
 import 'package:my_bookly/features/search/presentation/view_model/search/search_cubit.dart';
 import 'package:my_bookly/styles.dart';
 import 'package:sizer/sizer.dart';

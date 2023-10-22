@@ -6,4 +6,5 @@ class MyConstants {
   static const KtrainsitionDuration = Duration(seconds: 1);
   static const KgtSectraFine = 'GT Sectra Fine';
   static const Kgilroy = 'Gilroy';
+  static const KappName = 'Bookly';
 }
